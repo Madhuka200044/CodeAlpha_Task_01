@@ -1,51 +1,23 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Student 
-{
-    private String name;
-    private double grade;
-    
-    public Student(String name, double grade) 
-	{
-        this.name = name;
-        this.grade = grade;
-    }
-    
-    public String getName() 
-	{
-        return name;
-    }
-    
-    public double getGrade() 
-	{
-        return grade;
-    }
-    
-    @Override
-    public String toString() 
-	{
-        return String.format("%s: %.2f", name, grade);
-    }
-}
-
 public class StudentGradeTracker 
 {
-	private static void addStudent(Scanner scanner, ArrayList<Student> students) 
+    private static void addStudent(Scanner scanner, ArrayList<Student> students) 
 	{
         System.out.print("Enter student name: ");
         String name = scanner.nextLine();
         
-        System.out.print("Enter student grade: ");
+        System.out.print("Enter student marks: ");
         double grade = scanner.nextDouble();
-        scanner.nextLine();
+        scanner.nextLine(); // consume newline
         
         students.add(new Student(name, grade));
         System.out.println("Student added successfully!");
     }
-	
-	 private static void displayStudents(ArrayList<Student> students) 
-	 {
+    
+    private static void displayStudents(ArrayList<Student> students) 
+	{
         if (students.isEmpty()) 
 		{
             System.out.println("No students in the system.");
@@ -59,8 +31,8 @@ public class StudentGradeTracker
             System.out.println(student);
         }
     }
-	
-	private static void calculateAverage(ArrayList<Student> students) 
+    
+    private static void calculateAverage(ArrayList<Student> students) 
 	{
         if (students.isEmpty()) 
 		{
@@ -77,7 +49,8 @@ public class StudentGradeTracker
         double average = sum / students.size();
         System.out.printf("Class average grade: %.2f\n", average);
     }
-	private static void findHighestGrade(ArrayList<Student> students) 
+    
+    private static void findHighestGrade(ArrayList<Student> students) 
 	{
         if (students.isEmpty()) 
 		{
@@ -97,7 +70,8 @@ public class StudentGradeTracker
         System.out.println("Student with highest grade:");
         System.out.println(highest);
     }
-	private static void findLowestGrade(ArrayList<Student> students) 
+    
+    private static void findLowestGrade(ArrayList<Student> students) 
 	{
         if (students.isEmpty()) 
 		{
@@ -106,20 +80,21 @@ public class StudentGradeTracker
         }
         
         Student lowest = students.get(0);
-        for (Student student : students) {
+        for (Student student : students) 
+		{
             if (student.getGrade() < lowest.getGrade()) 
 			{
                 lowest = student;
             }
-    }
+        }
         
         System.out.println("Student with lowest grade:");
         System.out.println(lowest);
-    }
-	
-    public static void main(String[] args) 
+  }
+  
+  public static void main(String[] args) 
 	{
-		 Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         ArrayList<Student> students = new ArrayList<>();
         
         System.out.println("Student Grade Tracker");
@@ -163,6 +138,34 @@ public class StudentGradeTracker
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-		}
-	}
+        }
+    }
+}
+
+class Student 
+{
+    private String name;
+    private double grade;
+    
+    public Student(String name, double grade) 
+	{
+        this.name = name;
+        this.grade = grade;
+    }
+    
+    public String getName() 
+	{
+        return name;
+    }
+    
+    public double getGrade() 
+	{
+        return grade;
+    }
+    
+    @Override
+    public String toString() 
+	{
+        return String.format("%s: %.2f", name, grade);
+    }
 }
